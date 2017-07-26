@@ -37,18 +37,33 @@ def temperature_units
   'metric'.eql?(UNITS) ? 'C' : 'F'
 end
 
-def color_temperature(temp_celsius)
-  case temp_celsius.to_i
-  when 30..100
-    '#FF3300'
-  when 25..29
-    '#FF6000'
-  when 19..24
-    '#FF9D00'
-  when 5..18
-    '#18A9FF'
-  else
-    '#0065FF'
+def color_temperature(current_temp)
+  if UNITS == 'metric' # temperature is Celsius
+    case current_temp.to_i
+    when 30..100
+      '#FF3300'
+    when 25..29
+      '#FF6000'
+    when 19..24
+      '#FF9D00'
+    when 5..18
+      '#18A9FF'
+    else
+      '#0065FF'
+    end
+  else # temperature is Fahrenheit
+  	case current_temp.to_i
+    when 92..200
+      '#FF3300'
+    when 80..91
+      '#FF6000'
+    when 65..79
+      '#FF9D00'
+    when 41..64
+      '#18A9FF'
+    else
+      '#0065FF'
+    end
   end
 end
 
