@@ -1,6 +1,8 @@
 require 'net/http'
 
-# you can find CITY_ID here http://bulk.openweathermap.org/sample/city.list.json.gz
+# you can find CITY_ID here: https://openweathermap.org/find?q=
+# Once you click on your city from the search results, the City ID will be the last part of the URL.
+# Example: https://openweathermap.org/city/4119617  -- '4119617' is your City ID
 CITY_ID = 2172517
 
 # options: metric / imperial
