@@ -1,6 +1,8 @@
 require 'net/http'
 
-# you can find CITY_ID here http://bulk.openweathermap.org/sample/city.list.json.gz
+# you can find CITY_ID here: https://openweathermap.org/find?q=
+# Once you click on your city from the search results, the City ID will be the last part of the URL.
+# Example: https://openweathermap.org/city/4119617  -- '4119617' is your City ID
 CITY_ID = 2172517
 
 # options: metric / imperial
@@ -32,21 +34,36 @@ end
 
 
 def temperature_units
-  'metric'.eql?(UNITS) ? 'C' : 'K'
+  'metric'.eql?(UNITS) ? 'C' : 'F'
 end
 
-def color_temperature(temp_celsius)
-  case temp_celsius.to_i
-  when 30..100
-    '#FF3300'
-  when 25..29
-    '#FF6000'
-  when 19..24
-    '#FF9D00'
-  when 5..18
-    '#18A9FF'
-  else
-    '#0065FF'
+def color_temperature(current_temp)
+  if UNITS == 'metric' # temperature is Celsius
+    case current_temp.to_i
+    when 30..100
+      '#FF3300'
+    when 25..29
+      '#FF6000'
+    when 19..24
+      '#FF9D00'
+    when 5..18
+      '#18A9FF'
+    else
+      '#0065FF'
+    end
+  else # temperature is Fahrenheit
+  	case current_temp.to_i
+    when 92..200
+      '#FF3300'
+    when 80..91
+      '#FF6000'
+    when 65..79
+      '#FF9D00'
+    when 41..64
+      '#18A9FF'
+    else
+      '#0065FF'
+    end
   end
 end
 
